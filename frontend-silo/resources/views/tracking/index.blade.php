@@ -26,11 +26,12 @@
                     <th>Berat</th>
                     <th>Silo</th>
                     <th>Waktu</th>
+                    <th>Foto</th>
                     <th class="aksi">Aksi</th>
                 </tr>
             </thead>
             <tbody id="track-body">
-                <tr><td colspan="8" class="empty">Memuat data…</td></tr>
+                <tr><td colspan="9" class="empty">Memuat data…</td></tr>
             </tbody>
         </table>
     </div>

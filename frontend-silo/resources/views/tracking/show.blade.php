@@ -23,6 +23,15 @@
         <div class="card-head"><div><span class="kicker">Data mentah</span><h2>JSON dari perangkat</h2></div></div>
         <pre class="raw" id="det-raw"></pre>
     </section>
+
+    <section class="card">
+        <div class="card-head">
+            <div><span class="kicker">Kamera perangkat</span><h2>Foto batch</h2></div>
+            <span class="pill" id="foto-count">0 foto</span>
+        </div>
+        <div class="foto-grid" id="foto-grid"></div>
+        <p class="muted" id="foto-kosong">Belum ada foto. Foto dari kamera perangkat muncul otomatis saat barcode terbaca.</p>
+    </section>
 </div>
 @endsection
 

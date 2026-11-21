@@ -67,6 +67,8 @@ func (h *Handler) Register(app *fiber.App) {
 	api.Get("/barang", h.Auth, h.Barang)
 	api.Get("/tracking", h.Auth, h.Tracking)
 	api.Get("/tracking/:kode", h.Auth, h.TrackingDetail)
+	api.Post("/device/foto", h.DeviceFoto)
+	api.Get("/tracking/:kode/foto/:file", h.Auth, h.FotoFile)
 	api.Get("/kejadian", h.Auth, h.Kejadian)
 	api.Post("/kontrol", h.Auth, h.Kontrol)
 }
@@ -347,7 +349,7 @@ func toTracking(list []model.Scan) []model.TrackingItem {
 		if json.Valid([]byte(sc.Payload)) {
 			data = json.RawMessage(sc.Payload)
 		}
-		out = append(out, model.TrackingItem{Scan: sc, Data: data})
+		out = append(out, model.TrackingItem{Scan: sc, Data: data, Foto: fotoList(sc.BatchID)})
 	}
 	return out
 }
@@ -356,7 +358,7 @@ func toTracking(list []model.Scan) []model.TrackingItem {
 func (h *Handler) Tracking(c fiber.Ctx) error {
 	list, err := h.Store.RecentTracking(intQuery(c, "limit", 50, 1, 500))
 	if err != nil {
-		return err
+		return fail(c, fiber.StatusInternalServerError, "Gagal membaca riwayat tracking: "+err.Error())
 	}
 	return ok(c, toTracking(list))
 }

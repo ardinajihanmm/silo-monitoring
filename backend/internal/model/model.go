@@ -92,6 +92,7 @@ type Scan struct {
 type TrackingItem struct {
 	Scan
 	Data json.RawMessage `json:"data"`
+	Foto []string        `json:"foto"` // nama file foto dari kamera perangkat, terbaru dulu
 }
 
 // Event adalah catatan kejadian penting (perubahan level, kipas, konveyor, barang masuk).
